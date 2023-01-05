@@ -22,10 +22,9 @@ To use these samples, you'll need to install the following:
 Once you have these prerequisites installed, you can clone this repository and import the samples into Android Studio.
 
 ## Samples Apps
-
-| Jetpack Compose | Task manager |
-|-----------------|---------------|
-| <img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-composables-practice-problems/img/8361334a19050ac5_856.png"  height="500"> | <img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-composables-practice-problems/img/874adbbab0399bd1_856.png" height="500"> |
+| Jetpack Compose | Task manager | Business Card |
+|-----------------|---------------|-----------------|
+| <img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-composables-practice-problems/img/8361334a19050ac5_856.png"  height="500"> | <img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-composables-practice-problems/img/874adbbab0399bd1_856.png" height="500"> | <img src="https://developer.android.com/static/codelabs/basic-android-kotlin-compose-business-card/img/60ecde9fdd69536f_856.png" height="500"> |
 
 
 ## Contributions
