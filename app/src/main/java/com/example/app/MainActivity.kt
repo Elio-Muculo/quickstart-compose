@@ -15,12 +15,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.app.ui.theme.AppTheme
+import java.time.format.TextStyle
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,15 +36,65 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    BirthdayGreetingWithImage(
-                        message = getString(R.string.happy_birthday_text),
-                        from = getString(R.string.signature)
-                    )
+                    ArticleApp()
                 }
             }
         }
     }
 }
+
+//BirthdayGreetingWithImage(
+//message = getString(R.string.happy_birthday_text),
+//from = getString(R.string.signature)
+//)
+
+@Composable
+fun ArticleApp() {
+    val imageUrl = painterResource(id = R.drawable.bg_compose_background)
+    val title = stringResource(id = R.string.article_title)
+    val textOne = stringResource(id = R.string.first_paragraph)
+    val textTwo = stringResource(id = R.string.second_paragraph)
+    ArticleCard(
+        imageUrl = imageUrl,
+        title = title,
+        textOne = textOne,
+        textTwo = textTwo
+    )
+}
+
+@Composable
+fun ArticleCard(
+    imageUrl: Painter,
+    title: String,
+    textOne: String,
+    textTwo: String
+) {
+    Column() {
+        Image(painter = imageUrl, contentDescription = null)
+        Text(
+            text = title,
+            fontSize = 24.sp,
+            modifier = Modifier.padding(all = 16.dp)
+        )
+        Text(
+            text = textOne,
+            modifier = Modifier.padding(
+                end = 16.dp,
+                start = 16.dp
+            ),
+            textAlign = TextAlign.Justify
+        )
+        Text(
+            text = textTwo,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(
+                all = 16.dp
+            )
+        )
+    }
+}
+
+
 
 @Composable
 fun BirthdayGreetingWithImage(message: String, from: String) {
