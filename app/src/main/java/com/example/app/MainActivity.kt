@@ -5,7 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -13,12 +17,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -26,8 +33,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import com.example.app.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,15 +47,89 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.White
+//                    color = Color(0xFF073042)
                 ) {
-                   ComposeQuadrantApp()
+                    ModifierCard()
                 }
             }
         }
     }
 }
 
+// extract the modifier to top to not rebuild each time ui state change
+val boxModifiers = Modifier
+    .size(300.dp)
+
+@Composable
+fun ModifierCard() {
+    Column (
+        modifier = Modifier
+            .requiredSize(200.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp)
+    ) {
+        Box (modifier = Modifier
+            .clip(shape = CircleShape)
+            .background(Color.Blue)
+            .fillMaxSize()) {
+
+        }
+//       Row(modifier = Modifier.weight(4f).background(Color.Blue)) {
+//           Text(text = "Hello")
+//       }
+//       Row(modifier = Modifier.weight(2f).background(Color.Black)) {
+//           Text(text = "World")
+//       }
+//        Row(
+//            modifier = Modifier
+//                .align(Alignment.Center),
+//            horizontalArrangement = Arrangement.spacedBy(
+//                space = 20.dp,
+//                alignment = Alignment.CenterHorizontally
+//            )
+//        ) {
+//            Text(text = "Hello")
+//            Text(text = "World")
+//        }
+    }
+}
+
+
+
+@Composable
+fun BusinessCard() {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.android_logo),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .fillMaxWidth(0.28f)
+                .padding(horizontal = 5.dp)
+        )
+        Text(
+            text = stringResource(id = R.string.name),
+            style = TextStyle(
+                fontSize = 36.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Light
+            ),
+            modifier = Modifier
+                .padding(bottom = 10.dp, top = 14.dp)
+        )
+        Text(
+            text = stringResource(id = R.string.role),
+            style = TextStyle(
+                fontSize = 14.sp,
+                color = Color(0xFF3dde84),
+                fontWeight = FontWeight.Bold
+            )
+        )
+    }
+}
 
 @Composable
 fun ComposeQuadrantApp() {
@@ -81,6 +164,8 @@ fun ComposeQuadrantApp() {
         }
     }
 }
+
+
 
 @Composable
 private fun ComposableInfoCard(
