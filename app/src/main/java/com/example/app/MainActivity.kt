@@ -8,12 +8,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +25,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -37,22 +37,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import com.example.app.afirmation.data.Datasource
+import com.example.app.afirmation.model.Afirmation
 import com.example.app.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.White
-//                    color = Color(0xFF073042)
-                ) {
-                    ModifierCard()
-                }
-            }
+            AffirmationApp()
         }
     }
 }
@@ -160,6 +153,47 @@ fun ComposeQuadrantApp() {
                 description = stringResource(R.string.fourth_description),
                 backgroundColor = Color.LightGray,
                 modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+
+@Composable
+fun AffirmationApp() {
+    val context = LocalContext.current
+    AppTheme {
+        AffirmationList(affirmationList = Datasource().loadAffirmations())
+    }
+}
+
+@Composable
+private fun AffirmationList(affirmationList: List<Afirmation>, modifier: Modifier = Modifier) {
+    LazyColumn {
+        items(affirmationList){ affirmation ->
+            AffirmationCard(affirmation)
+        }
+    }
+}
+
+
+
+@Composable
+fun AffirmationCard(affirmation: Afirmation, modifier: Modifier = Modifier) {
+    ElevatedCard(modifier = Modifier.padding(8.dp)) {
+        Column {
+            Image(
+                painter = painterResource(affirmation.imageResourceId),
+                contentDescription = stringResource(affirmation.stringResourceId),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(194.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = stringResource(affirmation.stringResourceId),
+                modifier = Modifier.padding(16.dp),
+                style = MaterialTheme.typography.titleMedium
             )
         }
     }
