@@ -9,6 +9,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,6 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
@@ -39,13 +44,78 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.app.afirmation.data.Datasource
 import com.example.app.afirmation.model.Afirmation
+import com.example.app.courses.Course
 import com.example.app.ui.theme.AppTheme
+import kotlin.text.Typography
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AffirmationApp()
+            Surface (
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            )
+            {
+                TopicApp()
+            }
+        }
+    }
+}
+
+
+@Composable
+fun TopicApp() {
+    val context = LocalContext.current
+    AppTheme {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(8.dp)
+        ) {
+            items(com.example.app.courses.DataSource.topics) { item ->
+                TopicCard(topic = item)
+            }
+        }
+    }
+}
+
+
+@Composable
+fun TopicCard(topic: Course, modifier: Modifier = Modifier) {
+    ElevatedCard (
+        shape = RoundedCornerShape(4.dp),
+        elevation = CardDefaults.outlinedCardElevation(),
+        colors = CardDefaults.outlinedCardColors(containerColor = Color.White)
+    ) {
+        Row {
+            Image(
+                painter = painterResource(id = topic.image),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(68.dp, 68.dp)
+                    .aspectRatio(1f),
+            )
+            Column {
+                Text(
+                    text = stringResource(id = topic.text),
+                    modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 8.dp),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(painter = painterResource(id = R.drawable.ic_grain), contentDescription = null, modifier = Modifier
+                        .padding(start = 16.dp)
+                        .size(12.dp))
+                    Text(
+                        text = topic.value.toString(),
+                        modifier = Modifier
+                            .padding(start = 8.dp),
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                }
+            }
         }
     }
 }
@@ -370,7 +440,7 @@ fun BirthdayGreatingWithText(message: String, from: String) {
 @Composable
 fun DefaultPreview() {
     AppTheme {
-
+        TopicCard(topic = Course(R.string.architecture, 58, R.drawable.architecture))
     }
 }
 
