@@ -8,70 +8,100 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.app.R
 
-val AbrilFatface = FontFamily(
-    Font(R.font.abril_fatface_regular)
+
+val Cabin = FontFamily(
+    Font(R.font.cabin_regular, FontWeight.Normal),
+    Font(R.font.cabin_bold, FontWeight.Bold)
 )
-
-val Montserrat = FontFamily(
-    Font(R.font.montserrat_regular),
-    Font(R.font.montserrat_bold, FontWeight.Bold)
-)
-
-
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     displayLarge = TextStyle(
-        fontFamily = AbrilFatface,
         fontWeight = FontWeight.Normal,
         fontSize = 30.sp
     ),
     displayMedium = TextStyle(
-        fontFamily = Montserrat,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     ),
     displaySmall = TextStyle(
-        fontFamily = Montserrat,
         fontWeight = FontWeight.Bold,
-        fontSize = 14.sp
+        fontSize = 20.sp
     ),
-    bodySmall = TextStyle(
-        fontFamily = Montserrat,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
-    labelMedium = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        letterSpacing = 0.4.sp
-    ),
+
     bodyMedium = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 16.sp
     )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
 )
+
+
+
+
+//val AbrilFatface = FontFamily(
+//    Font(R.font.abril_fatface_regular)
+//)
+//
+//val Montserrat = FontFamily(
+//    Font(R.font.montserrat_regular),
+//    Font(R.font.montserrat_bold, FontWeight.Bold)
+//)
+
+
+
+// Set of Material typography styles to start with
+//val Typography = Typography(
+//    displayLarge = TextStyle(
+//        fontFamily = AbrilFatface,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 30.sp
+//    ),
+//    displayMedium = TextStyle(
+//        fontFamily = Montserrat,
+//        fontWeight = FontWeight.Bold,
+//        fontSize = 20.sp
+//    ),
+//    displaySmall = TextStyle(
+//        fontFamily = Montserrat,
+//        fontWeight = FontWeight.Bold,
+//        fontSize = 14.sp
+//    ),
+//    bodySmall = TextStyle(
+//        fontFamily = Montserrat,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 14.sp
+//    ),
+//    bodyLarge = TextStyle(
+//        fontFamily = FontFamily.Default,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp,
+//        lineHeight = 24.sp,
+//        letterSpacing = 0.5.sp
+//    ),
+//    labelMedium = TextStyle(
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 12.sp,
+//        letterSpacing = 0.4.sp
+//    ),
+//    bodyMedium = TextStyle(
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp,
+//        letterSpacing = 0.5.sp
+//    )
+//    /* Other default text styles to override
+//    titleLarge = TextStyle(
+//        fontFamily = FontFamily.Default,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 22.sp,
+//        lineHeight = 28.sp,
+//        letterSpacing = 0.sp
+//    ),
+//    labelSmall = TextStyle(
+//        fontFamily = FontFamily.Default,
+//        fontWeight = FontWeight.Medium,
+//        fontSize = 11.sp,
+//        lineHeight = 16.sp,
+//        letterSpacing = 0.5.sp
+//    )
+//    */
+//)

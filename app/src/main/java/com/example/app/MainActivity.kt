@@ -123,7 +123,6 @@ fun DogItem(dog: Dog, modifier: Modifier = Modifier) {
         targetValue = if (expanded) Green25 else MaterialTheme.colorScheme.surface,
     )
 
-
     ElevatedCard(modifier = modifier.padding(8.dp)) {
         Column (
             modifier = Modifier

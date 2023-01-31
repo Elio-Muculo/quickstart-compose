@@ -18,23 +18,42 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 
 
+//private val DarkColorPalette = darkColorScheme(
+//    background = Cyan900,
+//    surface = Cyan700,
+//    onSurface = White,
+//    primary = Grey900,
+//    onPrimary = White,
+//    secondary = Grey100
+//)
+//
+//private val LightColorPalette = lightColorScheme(
+//    background = Green100,
+//    surface = Green50,
+//    onSurface = Grey900,
+//    primary = Grey50,
+//    onPrimary = Grey900,
+//    secondary = Grey700
+//)
+
 private val DarkColorPalette = darkColorScheme(
-    background = Cyan900,
-    surface = Cyan700,
-    onSurface = White,
-    primary = Grey900,
-    onPrimary = White,
-    secondary = Grey100
+    background = md_theme_dark_background,
+    surface = md_theme_dark_surface,
+    onSurface = md_theme_dark_onSurface,
+    primary = md_theme_dark_primary,
+    onPrimary = md_theme_dark_onPrimary,
+    secondary = md_theme_dark_secondary
 )
 
 private val LightColorPalette = lightColorScheme(
-    background = Green100,
-    surface = Green50,
-    onSurface = Grey900,
-    primary = Grey50,
-    onPrimary = Grey900,
-    secondary = Grey700
+    background = md_theme_light_background,
+    surface = md_theme_light_surface,
+    onSurface = md_theme_light_onSurface,
+    primary = md_theme_light_primary,
+    onPrimary = md_theme_light_onPrimary,
+    secondary = md_theme_light_secondary
 )
+
 
 /* Other default colors to override
 background = Color(0xFFFFFBFE),
@@ -49,7 +68,6 @@ onSurface = Color(0xFF1C1B1F),
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -57,8 +75,6 @@ fun AppTheme(
         darkTheme -> DarkColorPalette
         else -> LightColorPalette
     }
-
-
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
